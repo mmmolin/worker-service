@@ -8,11 +8,31 @@ using System.Threading.Tasks;
 
 namespace WorkerService.Worker
 {
-    public class ScrapingWorker : BackgroundService
+    public class ScrapingWorker : IHostedService, IDisposable
     {
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        private Timer timer;
+        public Task StartAsync(CancellationToken cancellationToken)
         {
+            // Log start
+            timer = new Timer(RunGrpcClient, null, TimeSpan.Zero, TimeSpan.FromHours(1));
+            return Task.CompletedTask;
+        }
+
+        private void RunGrpcClient(object state)
+        {
+            // Log Run
+            // Call client
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            //Log stop
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            timer.Dispose();
         }
     }
 }
