@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using WorkerService.Infrastructure.Grpc;
 
 namespace WorkerService.Worker
 {
@@ -14,20 +15,22 @@ namespace WorkerService.Worker
         public Task StartAsync(CancellationToken cancellationToken)
         {
             // Log start
-            timer = new Timer(RunGrpcClient, null, TimeSpan.Zero, TimeSpan.FromHours(1));
+            timer = new Timer(RunGrpcClient, null, TimeSpan.Zero, TimeSpan.FromSeconds(30)/*TimeSpan.FromHours(1)*/);
             return Task.CompletedTask;
         }
 
         private void RunGrpcClient(object state)
         {
             // Log Run
-            // Call client
+            var client = new GrpcScraperClient();
+            client.CallScraperService();
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
             //Log stop
-            throw new NotImplementedException();
+            timer.Change(Timeout.Infinite, 0);
+            return Task.CompletedTask;
         }
 
         public void Dispose()
