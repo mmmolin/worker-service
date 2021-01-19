@@ -1,19 +1,18 @@
 ﻿using Grpc.Net.Client;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using WorkerService.Core.Interfaces;
 using WorkerService.Infrastructure.Grpc.Protos;
 
 namespace WorkerService.Infrastructure.Grpc
 {
-    public class GrpcScraperClient
+    public class GrpcScraperClient : IGrpcClient
     {
         public GrpcScraperClient()
         {
 
         }
 
-        public void CallScraperService()
+        public void CallService()
         {
             using var channel = GrpcChannel.ForAddress("https://localhost:5001");
             var client = new Scrape.ScrapeClient(channel);
