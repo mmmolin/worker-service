@@ -22,8 +22,8 @@ namespace WorkerService.Worker
         private void RunGrpcClient(object state)
         {
             // Log Run
-            var client = new GrpcScraperClient();
-            client.CallScraperService();
+            var scraperClient = new GrpcScraperClient();
+            scraperClient.CallService();
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
