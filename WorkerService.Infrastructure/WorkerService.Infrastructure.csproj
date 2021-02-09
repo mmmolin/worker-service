@@ -12,6 +12,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WorkerService.Core\WorkerService.Core.csproj" />
+  </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Grpc/Protos/scrape.proto" GrpcServices="Client" />
   </ItemGroup>
