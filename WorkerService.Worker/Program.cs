@@ -18,8 +18,8 @@ namespace WorkerService.Worker
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    //services.AddHostedService<Worker>();
                     services.AddHostedService<ScrapingWorker>();
+                    services.AddHostedService<MailWorker>();
                 });
     }
 }

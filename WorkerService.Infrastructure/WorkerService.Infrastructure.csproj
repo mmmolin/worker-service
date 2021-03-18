@@ -18,5 +18,6 @@
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Grpc/Protos/scrape.proto" GrpcServices="Client" />
+    <Protobuf Include="Grpc/Protos/sendmail.proto" GrpcService="Client" />
   </ItemGroup>
 </Project>
