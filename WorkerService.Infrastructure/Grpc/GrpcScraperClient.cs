@@ -17,8 +17,7 @@ namespace WorkerService.Infrastructure.Grpc
         {
             var httpHandler = new HttpClientHandler();
             httpHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-            using var channel = GrpcChannel.ForAddress("http://scraperservice:5001", new GrpcChannelOptions { HttpHandler = httpHandler});
-            //using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            using var channel = GrpcChannel.ForAddress("http://localhost:5000", new GrpcChannelOptions { HttpHandler = httpHandler });
             var client = new Scrape.ScrapeClient(channel);
             client.RunService(new ScrapeRequest());
             Console.WriteLine("Called Service");
